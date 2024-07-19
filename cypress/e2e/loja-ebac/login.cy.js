@@ -11,7 +11,7 @@ describe('Funcionalidade: Login', () => {
         cy.screenshot()
     });
 
-    it.only('Deve fazer login com sucesso', () => {
+    it('Deve fazer login com sucesso', () => {
         cy.get('#username').type('andressateste@mailinator.com')
         cy.get('#password').type('Senha123456@')
         cy.get('.woocommerce-form > .button').click()
@@ -47,6 +47,11 @@ describe('Funcionalidade: Login', () => {
             cy.get('.woocommerce-form > .button').click()
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, andressateste (não é andressateste? Sair)')
         })
+    });
+
+    it.only('Deve fazer login com sucesso - usando comandos customizados', () => {
+        cy.login(perfil.usuario, perfil.senha)
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, andressateste (não é andressateste? Sair)')
     });
 
 } )
